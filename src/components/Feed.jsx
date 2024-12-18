@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
@@ -8,8 +9,7 @@ const Feed = () => {
   // read the feed
   const feedData = useSelector((store) => store.feed);
   const dispatch = useDispatch();
-  console.log("feed data:-", feedData);
-
+  // console.log("feed data:-", feedData);
   // console.log(useSelector((store) => store.feed));
 
   const getFeed = async () => {
@@ -20,14 +20,14 @@ const Feed = () => {
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
       });
-      console.log(res);
+      console.log("feed:", res);
       dispatch(addFeed(res?.data?.data));
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  //   get the feed 1st time as soon as the page load
+  // get the feed 1st time as soon as the page load
   useEffect(() => {
     getFeed();
   }, []);
